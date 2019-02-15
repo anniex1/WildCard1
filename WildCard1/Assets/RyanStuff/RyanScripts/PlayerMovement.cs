@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public int maxActions = 10;
+    public int actionCount;
+
     public float speed;
     //How fast the player moves from one space to another
 
@@ -21,28 +24,38 @@ public class PlayerMovement : MonoBehaviour
     private int horizontalCount = 0;
     private int verticalCount = 0;
 
+    public bool moveEnemy = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        actionCount = maxActions;
         pos = transform.position;
         tr = transform;
+
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        DiceRoll theDice = GameObject.Find("Player").GetComponent<DiceRoll>();
 
+        GameObject enemy = GameObject.Find("FollowingEnemy");
+        EnemyFollowing followingEnemy = (EnemyFollowing)enemy.GetComponent(typeof(EnemyFollowing));
 
-            //move RIGHT
-            if (Input.GetKeyDown(KeyCode.D) && tr.position == pos)
+        //move RIGHT
+        if (Input.GetKeyDown(KeyCode.D) && tr.position == pos)
             {
                 //Only change position if it is within boundaries of the grid
                 if (horizontalCount < 3)
                 {
                     pos += new Vector3(moveDistance, 0, 0);
-
                     horizontalCount += 1;
+
+                    followingEnemy.MoveTowardsPlayer();
+                    
+                    actionCount --;
                 }
 
             }
@@ -54,8 +67,12 @@ public class PlayerMovement : MonoBehaviour
                 if (horizontalCount > -3)
                 {
                     pos += new Vector3(-moveDistance, 0, 0);
-
                     horizontalCount -= 1;
+
+                    followingEnemy.MoveTowardsPlayer();
+
+                    actionCount--;
+
                 }
             }
 
@@ -66,8 +83,12 @@ public class PlayerMovement : MonoBehaviour
                 if (verticalCount < 3)
                 {
                     pos += new Vector3(0, moveDistance, 0);
-
                     verticalCount += 1;
+
+                    followingEnemy.MoveTowardsPlayer();
+
+                    actionCount --;
+
                 }
             }
 
@@ -78,8 +99,12 @@ public class PlayerMovement : MonoBehaviour
                 if (verticalCount > -3)
                 {
                     pos += new Vector3(0, -moveDistance, 0);
-
                     verticalCount -= 1;
+
+                    followingEnemy.MoveTowardsPlayer();
+
+                    actionCount--;
+
                 }
             }
 
@@ -88,5 +113,14 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    public int GetMoveNumber(int n)
+    {
+        return n;
+    }
+
+    public void minusAction()
+    {
+        actionCount--;
+    }
 
 }

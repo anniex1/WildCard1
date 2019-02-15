@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - TopDoor
+  - LeftDoor
+  - RightDoor
+  - BottomDoor
+  - Human
   layers:
   - Default
   - TransparentFX
