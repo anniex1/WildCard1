@@ -7,109 +7,71 @@ public class PlayerMovement : MonoBehaviour
     public int maxActions = 10;
     public int actionCount;
 
-    public float speed;
-    //How fast the player moves from one space to another
-
-    public float moveDistance;
-    //Can edit the moveDistance in the Unity editor to see how much
-    //the player should move on a grid.
-
-    private Vector3 pos;
-    //Player's target position of where to move
-
-    private Transform tr;
-
-    //vertical and horizontal count make sure that player is within the boundaries
-    //of the grid. They should be set to ZERO whenever the player is on the center tile.
-    private int horizontalCount = 0;
-    private int verticalCount = 0;
-
-    public bool moveEnemy = false;
 
     // Start is called before the first frame update
     void Start()
     {
         actionCount = maxActions;
-        pos = transform.position;
-        tr = transform;
-
-        
-        
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        GameObject enemy = GameObject.Find("FollowingEnemy");
-        EnemyFollowing followingEnemy = (EnemyFollowing)enemy.GetComponent(typeof(EnemyFollowing));
-
+       
         //move RIGHT
-        if (Input.GetKeyDown(KeyCode.D) && tr.position == pos)
+        if (Input.GetKeyDown(KeyCode.D) && transform.position.x < -0.5)
+        {
+            actionCount--;
+            transform.position = new Vector3(transform.position.x + 1, transform.position.y);
+
+            if (GetComponent<PlayerInteraction>().movingThroughDoor)
             {
-                //Only change position if it is within boundaries of the grid
-                if (horizontalCount < 3)
-                {
-                    pos += new Vector3(moveDistance, 0, 0);
-                    horizontalCount += 1;
-
-                    followingEnemy.MoveTowardsPlayer();
-                    
-                    actionCount --;
-                }
-
+                transform.position = new Vector3(transform.position.x - 1, transform.position.y);
+                GetComponent<PlayerInteraction>().movingThroughDoor = false;
             }
+        }
 
-            //move LEFT
-            else if (Input.GetKeyDown(KeyCode.A) && tr.position == pos)
+        //move LEFT
+        else if (Input.GetKeyDown(KeyCode.A) && transform.position.x > -6.5)
+        {
+            actionCount--;
+            transform.position = new Vector3(transform.position.x - 1, transform.position.y);
+
+            if (GetComponent<PlayerInteraction>().movingThroughDoor)
             {
-                //Only change position if it is within boundaries of the grid
-                if (horizontalCount > -3)
-                {
-                    pos += new Vector3(-moveDistance, 0, 0);
-                    horizontalCount -= 1;
-
-                    followingEnemy.MoveTowardsPlayer();
-
-                    actionCount--;
-
-                }
+                transform.position = new Vector3(transform.position.x + 1, transform.position.y);
+                GetComponent<PlayerInteraction>().movingThroughDoor = false;
             }
+        }
 
-            //move UP
-            else if (Input.GetKeyDown(KeyCode.W) && tr.position == pos)
+        //move UP
+        else if (Input.GetKeyDown(KeyCode.W) && transform.position.y < 3)
+        {
+            actionCount--;
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1);
+
+            if (GetComponent<PlayerInteraction>().movingThroughDoor)
             {
-                //Only change position if it is within boundaries of the grid
-                if (verticalCount < 3)
-                {
-                    pos += new Vector3(0, moveDistance, 0);
-                    verticalCount += 1;
-
-                    followingEnemy.MoveTowardsPlayer();
-
-                    actionCount --;
-
-                }
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1);
+                GetComponent<PlayerInteraction>().movingThroughDoor = false;
             }
+        }
 
-            //move DOWN
-            else if (Input.GetKeyDown(KeyCode.S) && tr.position == pos)
+        //move DOWN
+        else if (Input.GetKeyDown(KeyCode.S) && transform.position.y > -3)
+        {
+            actionCount--;
+            transform.position = new Vector3(transform.position.x, transform.position.y -1);
+
+            if(GetComponent<PlayerInteraction>().movingThroughDoor)
             {
-                //Only change position if it is within boundaries of the grid
-                if (verticalCount > -3)
-                {
-                    pos += new Vector3(0, -moveDistance, 0);
-                    verticalCount -= 1;
-
-                    followingEnemy.MoveTowardsPlayer();
-
-                    actionCount--;
-
-                }
+                transform.position = new Vector3(transform.position.x, transform.position.y + 1);
+                GetComponent<PlayerInteraction>().movingThroughDoor = false;
             }
-
-        //What makes the player move to the designated target position (pos)
-        transform.position = Vector3.MoveTowards(transform.position, pos, Time.deltaTime * speed);
+                
+        }
+        
 
     }
 
