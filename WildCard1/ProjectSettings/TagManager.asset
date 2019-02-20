@@ -10,6 +10,7 @@ TagManager:
   - RightDoor
   - BottomDoor
   - Human
+  - Story
   layers:
   - Default
   - TransparentFX
