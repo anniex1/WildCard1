@@ -25,10 +25,14 @@ public class PlayerMovement : MonoBehaviour
             actionCount--;
             transform.position = new Vector3(transform.position.x + 1, transform.position.y);
 
+            //When player moves through a door, it does two actions, which is not supposed to happen.
+            //The if statements like this one are what "reset" the moves so that it seems like
+            //only one action is made, which is correct.
             if (GetComponent<PlayerInteraction>().movingThroughDoor)
             {
                 transform.position = new Vector3(transform.position.x - 1, transform.position.y);
                 GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                actionCount++;
             }
         }
 
@@ -42,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x + 1, transform.position.y);
                 GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                actionCount++;
             }
         }
 
@@ -55,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y - 1);
                 GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                actionCount++;
             }
         }
 
@@ -68,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + 1);
                 GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                actionCount++;
             }
                 
         }
@@ -75,12 +82,12 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public int GetMoveNumber(int n)
+    public int GetMoveNumber()
     {
-        return n;
+        return actionCount;
     }
 
-    public void minusAction()
+    public void MinusAction()
     {
         actionCount--;
     }
