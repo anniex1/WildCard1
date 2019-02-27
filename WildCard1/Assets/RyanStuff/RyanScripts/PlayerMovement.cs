@@ -17,67 +17,72 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
 
        if (actionCount > 0)
         {
-            //move RIGHT
-            if (Input.GetKeyDown(KeyCode.D) && transform.position.x < -0.5)
+            if(!GetComponent<PlayerTurn>().enemyMoving)
             {
-                actionCount--;
-                transform.position = new Vector3(transform.position.x + 1, transform.position.y);
-
-                //When player moves through a door, it does two actions, which is not supposed to happen.
-                //The if statements like this one are what "reset" the moves so that it seems like
-                //only one action is made, which is correct.
-                if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                //move RIGHT
+                if (Input.GetKeyDown(KeyCode.D) && transform.position.x < -0.5)
                 {
-                    transform.position = new Vector3(transform.position.x - 1, transform.position.y);
-                    GetComponent<PlayerInteraction>().movingThroughDoor = false;
-                    actionCount++;
-                }
-            }
-
-            //move LEFT
-            else if (Input.GetKeyDown(KeyCode.A) && transform.position.x > -6.5)
-            {
-                actionCount--;
-                transform.position = new Vector3(transform.position.x - 1, transform.position.y);
-
-                if (GetComponent<PlayerInteraction>().movingThroughDoor)
-                {
+                    actionCount--;
                     transform.position = new Vector3(transform.position.x + 1, transform.position.y);
-                    GetComponent<PlayerInteraction>().movingThroughDoor = false;
-                    actionCount++;
+
+                    //When player moves through a door, it does two actions, which is not supposed to happen.
+                    //The if statements like this one are what "reset" the moves so that it seems like
+                    //only one action is made, which is correct.
+                    if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                    {
+                        transform.position = new Vector3(transform.position.x - 1, transform.position.y);
+                        GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                        actionCount++;
+                    }
                 }
-            }
 
-            //move UP
-            else if (Input.GetKeyDown(KeyCode.W) && transform.position.y < 3)
-            {
-                actionCount--;
-                transform.position = new Vector3(transform.position.x, transform.position.y + 1);
-
-                if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                //move LEFT
+                else if (Input.GetKeyDown(KeyCode.A) && transform.position.x > -6.5)
                 {
-                    transform.position = new Vector3(transform.position.x, transform.position.y - 1);
-                    GetComponent<PlayerInteraction>().movingThroughDoor = false;
-                    actionCount++;
+                    actionCount--;
+                    transform.position = new Vector3(transform.position.x - 1, transform.position.y);
+
+                    if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                    {
+                        transform.position = new Vector3(transform.position.x + 1, transform.position.y);
+                        GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                        actionCount++;
+                    }
                 }
-            }
 
-            //move DOWN
-            else if (Input.GetKeyDown(KeyCode.S) && transform.position.y > -3)
-            {
-                actionCount--;
-                transform.position = new Vector3(transform.position.x, transform.position.y - 1);
-
-                if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                //move UP
+                else if (Input.GetKeyDown(KeyCode.W) && transform.position.y < 3)
                 {
+                    actionCount--;
                     transform.position = new Vector3(transform.position.x, transform.position.y + 1);
-                    GetComponent<PlayerInteraction>().movingThroughDoor = false;
-                    actionCount++;
+
+                    if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y - 1);
+                        GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                        actionCount++;
+                    }
                 }
 
+                //move DOWN
+                else if (Input.GetKeyDown(KeyCode.S) && transform.position.y > -3)
+                {
+                    actionCount--;
+                    transform.position = new Vector3(transform.position.x, transform.position.y - 1);
+
+                    if (GetComponent<PlayerInteraction>().movingThroughDoor)
+                    {
+                        transform.position = new Vector3(transform.position.x, transform.position.y + 1);
+                        GetComponent<PlayerInteraction>().movingThroughDoor = false;
+                        actionCount++;
+                    }
+
+                }
             }
         }
        

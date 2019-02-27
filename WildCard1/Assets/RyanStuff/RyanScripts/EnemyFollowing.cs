@@ -20,23 +20,23 @@ public class EnemyFollowing : MonoBehaviour
     int MOVE_UP = 3;
     int MOVE_DOWN = 4;
 
+    public PlayerMovement PlayerMovementScript;
+
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        moveTo = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.position != player.position+moveTo)
-        transform.position = Vector3.MoveTowards(transform.position, moveTo, Time.deltaTime * speed);
+            
     }
 
     public void MoveTowardsPlayer()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         //if enemy is on right player
         if (player.position.x < transform.position.x)
@@ -72,28 +72,48 @@ public class EnemyFollowing : MonoBehaviour
 
         if (moveDirection == MOVE_RIGHT)
         {
-            moveTo += new Vector3(1, 0, 0);
+            transform.position = new Vector3(transform.position.x + 1, transform.position.y);
         }
         else if (moveDirection == MOVE_LEFT)
         {
-            moveTo += new Vector3(-1, 0, 0);
+            transform.position = new Vector3(transform.position.x - 1, transform.position.y);
 
         }
         else if (moveDirection == MOVE_UP)
         {
-            moveTo += new Vector3(0, 1, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 1);
 
         }
         else if (moveDirection == MOVE_DOWN)
         {
-            moveTo += new Vector3(0, -1, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y - 1);
         }
         else if (moveDirection == DONT_MOVE)
         {
-            moveTo += new Vector3(0, 0, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y);
         }
 
 
         moveList.Clear();
     }
+
+    public IEnumerator MoveOneSpace()
+    {
+        yield return new WaitForSeconds(.25f);
+        MoveTowardsPlayer();
+
+        GameObject.Find("Player").GetComponent<PlayerTurn>().enemyMoving = false;
+    }
+
+    public IEnumerator MoveTwoSpaces()
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            MoveTowardsPlayer();
+            yield return new WaitForSeconds(.25f);
+        }
+
+        GameObject.Find("Player").GetComponent<PlayerTurn>().enemyMoving = false;
+    }
+
 }
