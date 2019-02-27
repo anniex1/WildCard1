@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8122437918309207351
+--- !u!1 &2689600374784130742
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8122437918309207345}
-  - component: {fileID: 8122437918309207350}
-  - component: {fileID: 8122437918309207344}
-  - component: {fileID: 8122437918309207347}
-  - component: {fileID: 8122437918309207356}
-  - component: {fileID: 8122437918309207357}
-  - component: {fileID: 8122437918309207346}
+  - component: {fileID: 2689600374784130736}
+  - component: {fileID: 2689600374784130743}
+  - component: {fileID: 2689600374784130749}
+  - component: {fileID: 2689600374784130738}
+  - component: {fileID: 2689600374784130737}
+  - component: {fileID: 2689600374784130748}
+  - component: {fileID: 2689600374784130739}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -22,27 +22,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8122437918309207345
+--- !u!4 &2689600374784130736
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
+  m_GameObject: {fileID: 2689600374784130742}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0, z: -0.009000003}
+  m_LocalPosition: {x: -3.5, y: 0, z: 0}
   m_LocalScale: {x: 0.8389263, y: 0.8389263, z: 0.8389263}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8122437918309207350
+--- !u!212 &2689600374784130743
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
+  m_GameObject: {fileID: 2689600374784130742}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a686b6223e281c64591c4bc53ae1ce26, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14d8cd0f96879bd4c81708253d380f38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,13 +84,60 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8122437918309207344
+--- !u!114 &2689600374784130749
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
+  m_GameObject: {fileID: 2689600374784130742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a85c5af8ce72834a878ced19876cb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  roomNumber: 0
+  movingThroughDoor: 0
+  humanCount: 0
+--- !u!114 &2689600374784130738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689600374784130742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222e67b90facdc34cb6705fff16396d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTurn: 1
+  oneSpaceEnemies:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  twoSpaceEnemies:
+  - {fileID: 0}
+  enemyMoving: 0
+--- !u!114 &2689600374784130737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689600374784130742}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ef29d7162b4dd445ada5de1fe2dd629, type: 3}
@@ -98,41 +145,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxActions: 10
   actionCount: 0
-  speed: 15
-  moveDistance: 1
-  moveEnemy: 0
---- !u!114 &8122437918309207347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cbf03af1e1e13247bf7492ae24e20a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  diceCount: 0
---- !u!114 &8122437918309207356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a85c5af8ce72834a878ced19876cb78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!61 &8122437918309207357
+--- !u!61 &2689600374784130748
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
+  m_GameObject: {fileID: 2689600374784130742}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -143,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.0666667, y: 1.0666667}
+    oldSize: {x: 1.0295652, y: 1.0295652}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -152,14 +171,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9787, y: 1.008679}
   m_EdgeRadius: 0
---- !u!50 &8122437918309207346
+--- !u!50 &2689600374784130739
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122437918309207351}
+  m_GameObject: {fileID: 2689600374784130742}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
