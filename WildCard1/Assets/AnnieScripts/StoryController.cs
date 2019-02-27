@@ -20,10 +20,12 @@ public class StoryController : MonoBehaviour
 	public GameObject TurnText;
 	private string[] TurnNames = {"Player Turn", "Alien Turn", "Alien Encounter"};
 	
+	
     // Start is called before the first frame update
     void Start()
     {
 		PlayerObj = GameObject.FindWithTag("Player");
+		GameTurns[0].SetActive(true);
         GameTurns[1].SetActive(false);
 		GameTurns[2].SetActive(false);
     }
@@ -31,6 +33,11 @@ public class StoryController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Dictionary<string, bool> playerStatuses = PlayerObj.GetComponent<PlayerInteraction>().getStatuses();
+		if(playerStatuses["OnEnemy"]) {
+			GameTurn = 2;
+		}
+		
 		//GetGameTurn();
         if (PrevTurn != GameTurn) {
 			PrevTurn = GameTurn;
@@ -45,13 +52,17 @@ public class StoryController : MonoBehaviour
 			}
 		}
 		
+		
+		
 		switch (GameTurn) { //different things that will happen depending on the turn
 			case 0:
 				GameTurns[0].GetComponent<PlayerTurnController>().MoveCount = PlayerObj.GetComponent<PlayerMovement>().actionCount;
+				GameTurns[0].GetComponent<PlayerTurnController>().MeetHuman = playerStatuses["OnHuman"];
 				break;
 			case 1:
 				break;
 			case 2:
+				GameTurns[2].GetComponent<AlienEncounterController>().NumMaxSacrifice = PlayerObj.GetComponent<PlayerInteraction>().humanCount;
 				break;
 		}
 

@@ -16,9 +16,15 @@ public class PlayerInteraction : MonoBehaviour
     Vector3 LEFT = new Vector3(-6.5f, 0);
     Vector3 RIGHT = new Vector3(-0.5f, 0);
 
+	
+	private bool OnHuman = false;
+	private bool OnEnemy = false;
+	private Dictionary<string, bool> statuses = new Dictionary<string, bool>();
     // Start is called before the first frame update
     void Start()
     {
+		statuses.Add("OnHuman", OnHuman);
+		statuses.Add("OnEnemy", OnEnemy);
     }
 
     // Update is called once per frame
@@ -339,17 +345,36 @@ public class PlayerInteraction : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("OOF, hit an enemy!");
+			OnEnemy = true;
         }
 
         if(other.gameObject.tag == "Human")
         {
             Debug.Log("YOU MET A HOOMAN");
+			OnHuman = true;
         }
 
     }
+	
+	void OnTriggerExit2D(Collider2D other) {
+		if (other.gameObject.tag == "Enemy") {
+			OnEnemy = false;
+		}
+		if (other.gameObject.tag == "Human") {
+			OnHuman = false;
+		}
+	}
 
     public void changeHumanCount(int n)
     {
         humanCount+=n;
     }
+
+	public Dictionary<string, bool> getStatuses() {
+		statuses["OnHuman"] = OnHuman;
+		statuses["OnEnemy"] = OnEnemy;
+		return statuses;
+	}
+
+	
 }

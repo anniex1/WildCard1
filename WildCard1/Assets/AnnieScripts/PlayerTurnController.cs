@@ -21,6 +21,7 @@ public class PlayerTurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		
 		string NewText = "You have " + MoveCount + " moves left";
         MovesLeft.GetComponent<ChangeThisText>().ChangeText(NewText);
 		
@@ -28,11 +29,11 @@ public class PlayerTurnController : MonoBehaviour
     }
 	
 	void HumanButtonHandler() {
-		if (MeetHuman) { //disallow button interaction
+		if (MeetHuman) {
 			GetHumanButton.interactable = true;
 			var NewColorBlock = GetHumanButton.colors;
 			NewColorBlock.disabledColor = new Color (0.5f, 0.5f, 0.5f, 1f);
-		} else {
+		} else {  //disallow button i
 			GetHumanButton.interactable = false;
 		}
 	}
