@@ -11,6 +11,9 @@ public class PlayerInteraction : MonoBehaviour
 
     public int humanCount = 0;
 
+    public bool takeHuman = false;
+    public bool sacrificedHuman = false;
+
     Vector3 TOP = new Vector3(-3.5f, 3);
     Vector3 BOTTOM = new Vector3(-3.5f, -3);
     Vector3 LEFT = new Vector3(-6.5f, 0);
@@ -336,6 +339,30 @@ public class PlayerInteraction : MonoBehaviour
             {
                 Debug.Log("EXIT THE SHIP");
             }
+
+
+            /*
+             * IF HUMAN IS PICKED UP, OR IF ENEMY IS SACRIFICED
+             */
+            if (other.tag == "Human")
+             {
+                if(takeHuman == true)
+                {
+                    other.gameObject.SetActive(false);
+                    takeHuman = false;
+                }
+             }
+
+            if (other.tag == "Enemy")
+            {
+                if (sacrificedHuman == true)
+                {
+                    other.gameObject.SetActive(false);
+                    sacrificedHuman = false;
+                }
+            }
+            
+
 
         }
     }

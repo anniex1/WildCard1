@@ -61,10 +61,16 @@ public class ButtonHandlers : MonoBehaviour
 		HumansInParty.Add(hiHumanName);
 		string NewString = HiHuman[hiHumanName] + " " + NewHumanConseq;
 		StoryObj.GetComponent<ChangeThisText>().ChangeText(NewString);
-		//button should disable bc the human can no longer be picked up
-		//this should happen in the PlayerTurnController every Update as long
-		//as after the human is met, the Human GameObject is removed
-	}
+        //button should disable bc the human can no longer be picked up
+        //this should happen in the PlayerTurnController every Update as long
+        //as after the human is met, the Human GameObject is removed
+
+
+        //Stuff Ryan Did:
+        PlayerObj.GetComponent<PlayerMovement>().MinusAction();
+        PlayerObj.GetComponent<PlayerInteraction>().takeHuman = true;
+        //---
+    }
 	
 	public void SacrificeHuman(int sacrificeNumber = -1) {
 		int nextHuman = Random.Range(0, HumansInParty.Count);
@@ -74,10 +80,13 @@ public class ButtonHandlers : MonoBehaviour
 		string NewString = ByeHuman[byeHumanName];
 		StoryObj.GetComponent<ChangeThisText>().ChangeText(NewString);
 		PlayerObj.GetComponent<PlayerInteraction>().changeHumanCount(sacrificeNumber);
-		
-		//tell the gameboard to change its state
 
-	}
+        //tell the gameboard to change its state
+
+        //Stuff Ryan Did:
+        PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
+        //---
+    }
 	
 	public void Run() {
 		Debug.Log("RUN");
