@@ -12,6 +12,7 @@ TagManager:
   - Human
   - Story
   - Exit
+  - GameOver
   layers:
   - Default
   - TransparentFX

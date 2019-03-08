@@ -8,6 +8,7 @@ public class PlayerTurnController : MonoBehaviour
 	public int MoveCount;
 	public GameObject MovesLeft;
 	
+	public GameObject PlayerObj;
 	public bool MeetHuman; //true if the player is touching a human
 	public Button GetHumanButton;
 	private GameObject button;
@@ -21,7 +22,9 @@ public class PlayerTurnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		
+		Dictionary<string, bool> playerStatuses = PlayerObj.GetComponent<PlayerInteraction>().getStatuses();
+		MoveCount = PlayerObj.GetComponent<PlayerMovement>().actionCount;
+		MeetHuman = playerStatuses["OnHuman"];
 		string NewText = "You have " + MoveCount + " moves left";
         MovesLeft.GetComponent<ChangeThisText>().ChangeText(NewText);
 		

@@ -13,6 +13,8 @@ public class StoryController : MonoBehaviour
 	public int GameTurn = 0; //player turn, monster turn, or monster encounter
 	
 	public GameObject PlayerObj;
+	public GameObject InventoryObj;
+	public GameObject ButtonHandlersObj;
 	
 	[Header("0 = Player, 1 = Enemy, 2 = Encounter")]
 	public GameObject[] GameTurns;
@@ -28,15 +30,24 @@ public class StoryController : MonoBehaviour
 		GameTurns[0].SetActive(true);
         GameTurns[1].SetActive(false);
 		GameTurns[2].SetActive(false);
+		GameTurns[0].GetComponent<PlayerTurnController>().PlayerObj = PlayerObj;
+		GameTurns[2].GetComponent<AlienEncounterController>().PlayerObj = PlayerObj;
+		ButtonHandlersObj.GetComponent<ButtonHandlers>().InventoryObj = InventoryObj;
+		
     }
 
     // Update is called once per frame
     void Update()
     {
 		Dictionary<string, bool> playerStatuses = PlayerObj.GetComponent<PlayerInteraction>().getStatuses();
-		if(playerStatuses["OnEnemy"]) {
+		if (PlayerObj.GetComponent<PlayerTurn>().getEnemyMovingStatus()) {
+			GameTurn = 1;
+		} else if (playerStatuses["OnEnemy"]) {
 			GameTurn = 2;
+		} else {
+			GameTurn = 0;
 		}
+		
 		
 		//GetGameTurn();
         if (PrevTurn != GameTurn) {
@@ -54,17 +65,17 @@ public class StoryController : MonoBehaviour
 		
 		
 		
-		switch (GameTurn) { //different things that will happen depending on the turn
+		/*switch (GameTurn) { //different things that will happen depending on the turn
 			case 0:
-				GameTurns[0].GetComponent<PlayerTurnController>().MoveCount = PlayerObj.GetComponent<PlayerMovement>().actionCount;
-				GameTurns[0].GetComponent<PlayerTurnController>().MeetHuman = playerStatuses["OnHuman"];
+				//GameTurns[0].GetComponent<PlayerTurnController>().MoveCount = PlayerObj.GetComponent<PlayerMovement>().actionCount;
+				//GameTurns[0].GetComponent<PlayerTurnController>().MeetHuman = playerStatuses["OnHuman"];
 				break;
 			case 1:
 				break;
 			case 2:
-				GameTurns[2].GetComponent<AlienEncounterController>().NumMaxSacrifice = PlayerObj.GetComponent<PlayerInteraction>().humanCount;
+				//GameTurns[2].GetComponent<AlienEncounterController>().NumMaxSacrifice = PlayerObj.GetComponent<PlayerInteraction>().humanCount;
 				break;
-		}
+		}*/
 
     }
 	

@@ -23,6 +23,9 @@ public class PlayerInteraction : MonoBehaviour
 	private bool OnHuman = false;
 	private bool OnEnemy = false;
 	private Dictionary<string, bool> statuses = new Dictionary<string, bool>();
+	private bool triggered = true;
+	private Collider2D other;
+	
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,10 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (triggered && !other) {
+			OnHuman = false;
+			OnEnemy = false;
+		}
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -369,6 +376,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+		triggered = true;
+		this.other = other;
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("OOF, hit an enemy!");
@@ -391,6 +400,7 @@ public class PlayerInteraction : MonoBehaviour
 			OnHuman = false;
 		}
 	}
+	
 
     public void changeHumanCount(int n)
     {

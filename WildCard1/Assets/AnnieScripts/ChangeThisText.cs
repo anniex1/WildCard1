@@ -20,4 +20,9 @@ public class ChangeThisText : MonoBehaviour
 	public void ChangeText(string NewText) {
 		GetComponent<Text>().text = NewText;
 	}
+	
+	public string CheckText() {
+		return GetComponent<Text>().text;
+	}
+	
 }

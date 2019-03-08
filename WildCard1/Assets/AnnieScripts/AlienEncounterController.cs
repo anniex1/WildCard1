@@ -9,6 +9,7 @@ public class AlienEncounterController : MonoBehaviour
 	
 	public Button SacrificeButton;
 	public int NumMaxSacrifice;
+	public GameObject PlayerObj;
 	
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,7 @@ public class AlienEncounterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		NumMaxSacrifice = PlayerObj.GetComponent<PlayerInteraction>().humanCount;
         if (NumMaxSacrifice > 0) {
 			SacrificeButton.interactable = true;
 			var NewColorBlock = SacrificeButton.colors;

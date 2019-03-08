@@ -76,5 +76,9 @@ public class PlayerTurn : MonoBehaviour
             
         }
     }
+	
+	public bool getEnemyMovingStatus() {
+		return enemyMoving;// && (!playerTurn);
+	}
 
 }
