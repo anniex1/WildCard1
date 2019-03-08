@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
 	private bool OnEnemy = false;
 	private Dictionary<string, bool> statuses = new Dictionary<string, bool>();
 	private bool triggered = true;
-	private Collider2D other;
+	private Collider2D otherTrigger;
 	
     // Start is called before the first frame update
     void Start()
@@ -36,7 +36,7 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (triggered && !other) {
+		if (triggered && !this.otherTrigger) {
 			OnHuman = false;
 			OnEnemy = false;
 		}
@@ -243,7 +243,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 3;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 5)
+                else if (roomNumber == 5)
                 {
                     Debug.Log("Move to Room 2");
                     roomArray[5].SetActive(false);
@@ -252,7 +252,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 2;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 6)
+                else if (roomNumber == 6)
                 {
                     Debug.Log("Move to Room 4");
                     roomArray[6].SetActive(false);
@@ -261,7 +261,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 4;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 4)
+                else if (roomNumber == 4)
                 {
                     Debug.Log("Move to Room 8");
                     roomArray[4].SetActive(false);
@@ -270,7 +270,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 8;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 7)
+                else if (roomNumber == 7)
                 {
                     Debug.Log("Move to Room 10");
                     roomArray[7].SetActive(false);
@@ -298,7 +298,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 5;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 3)
+                else if (roomNumber == 3)
                 {
                     Debug.Log("Move to Room 2");
                     roomArray[3].SetActive(false);
@@ -307,7 +307,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 2;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 4)
+                else if (roomNumber == 4)
                 {
                     Debug.Log("Move to Room 6");
                     roomArray[4].SetActive(false);
@@ -316,7 +316,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 6;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 8)
+                else if (roomNumber == 8)
                 {
                     Debug.Log("Move to Room 4");
                     roomArray[8].SetActive(false);
@@ -325,7 +325,7 @@ public class PlayerInteraction : MonoBehaviour
                     roomNumber = 4;
                     movingThroughDoor = true;
                 }
-                if (roomNumber == 10)
+                else if (roomNumber == 10)
                 {
                     Debug.Log("Move to Room 7");
                     roomArray[10].SetActive(false);
@@ -377,7 +377,7 @@ public class PlayerInteraction : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 		triggered = true;
-		this.other = other;
+		this.otherTrigger = other;
         if (other.gameObject.tag == "Enemy")
         {
             Debug.Log("OOF, hit an enemy!");

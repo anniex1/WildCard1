@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int maxActions = 10;
+    public int maxActions;
     public int actionCount;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
         actionCount = maxActions;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
 
 
-       if (actionCount > 0)
+        if (actionCount > 0)
         {
             if(!GetComponent<PlayerTurn>().enemyMoving)
             {
