@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -345,6 +346,7 @@ public class PlayerInteraction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S) && other.tag == "Exit")
             {
                 Debug.Log("EXIT THE SHIP");
+                SceneManager.LoadScene(2);
             }
 
 

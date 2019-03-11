@@ -37,4 +37,15 @@ public class MainMenuManager : MonoBehaviour
         MainMenuContainer.SetActive(true);
     }
 
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }
