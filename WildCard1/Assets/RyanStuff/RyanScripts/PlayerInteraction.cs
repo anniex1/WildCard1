@@ -24,7 +24,7 @@ public class PlayerInteraction : MonoBehaviour
 	private bool OnHuman = false;
 	private bool OnEnemy = false;
 	private Dictionary<string, bool> statuses = new Dictionary<string, bool>();
-	private bool triggered = true;
+	private bool triggered = false;
 	private Collider2D otherTrigger;
 	
     // Start is called before the first frame update
@@ -37,7 +37,9 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (triggered && !this.otherTrigger) {
+		if (triggered && !otherTrigger.gameObject.activeInHierarchy) {
+			Debug.Log("Triggered is working");
+			triggered = false;
 			OnHuman = false;
 			OnEnemy = false;
 		}

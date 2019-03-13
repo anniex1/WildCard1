@@ -15,6 +15,7 @@ public class StoryController : MonoBehaviour
 	public GameObject PlayerObj;
 	public GameObject InventoryObj;
 	public GameObject ButtonHandlersObj;
+	public GameObject StoryObj;
 	
 	[Header("0 = Player, 1 = Enemy, 2 = Encounter")]
 	public GameObject[] GameTurns;
@@ -23,10 +24,13 @@ public class StoryController : MonoBehaviour
 	private string[] TurnNames = {"Player Turn", "Alien Turn", "Alien Encounter"};
 	
 	
+	public bool cantMove;
+	
     // Start is called before the first frame update
     void Start()
     {
 		PlayerObj = GameObject.FindWithTag("Player");
+		StoryObj = GameObject.FindWithTag("Story");
 		GameTurns[0].SetActive(true);
         GameTurns[1].SetActive(false);
 		GameTurns[2].SetActive(false);
@@ -34,18 +38,24 @@ public class StoryController : MonoBehaviour
 		GameTurns[2].GetComponent<AlienEncounterController>().PlayerObj = PlayerObj;
 		ButtonHandlersObj.GetComponent<ButtonHandlers>().InventoryObj = InventoryObj;
 		
+		InventoryObj.GetComponent<ChangeThisText>().ChangeText("Inventory: Empty");
+		
     }
 
     // Update is called once per frame
     void Update()
     {
+		
 		Dictionary<string, bool> playerStatuses = PlayerObj.GetComponent<PlayerInteraction>().getStatuses();
 		if (PlayerObj.GetComponent<PlayerTurn>().getEnemyMovingStatus()) {
 			GameTurn = 1;
+			//Debug.Log("Enemy Turn");
 		} else if (playerStatuses["OnEnemy"]) {
 			GameTurn = 2;
+			//Debug.Log("Alien Encounter");
 		} else {
 			GameTurn = 0;
+			//Debug.Log("Player Turn");
 		}
 		
 		
@@ -65,17 +75,17 @@ public class StoryController : MonoBehaviour
 		
 		
 		
-		/*switch (GameTurn) { //different things that will happen depending on the turn
+		switch (GameTurn) { //different things that will happen depending on the turn
 			case 0:
-				//GameTurns[0].GetComponent<PlayerTurnController>().MoveCount = PlayerObj.GetComponent<PlayerMovement>().actionCount;
-				//GameTurns[0].GetComponent<PlayerTurnController>().MeetHuman = playerStatuses["OnHuman"];
+				cantMove = false;
 				break;
 			case 1:
+			    cantMove = true;
 				break;
 			case 2:
-				//GameTurns[2].GetComponent<AlienEncounterController>().NumMaxSacrifice = PlayerObj.GetComponent<PlayerInteraction>().humanCount;
+				cantMove = true;
 				break;
-		}*/
+		}
 
     }
 	

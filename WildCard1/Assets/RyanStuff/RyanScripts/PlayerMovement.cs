@@ -7,10 +7,12 @@ public class PlayerMovement : MonoBehaviour
     public int maxActions;
     public int actionCount;
 
+	public StoryController storyControl; //Annie
 
     // Start is called before the first frame update
     void Start()
     {
+		storyControl = GameObject.FindWithTag("Story").GetComponent<StoryController>(); //Annie
         maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
         actionCount = maxActions;
     }
@@ -23,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (actionCount > 0)
         {
-            if(!GetComponent<PlayerTurn>().enemyMoving)
+            if(!GetComponent<PlayerTurn>().enemyMoving && !storyControl.cantMove)
             {
                 //move RIGHT
                 if (Input.GetKeyDown(KeyCode.D) && transform.position.x < -0.5)

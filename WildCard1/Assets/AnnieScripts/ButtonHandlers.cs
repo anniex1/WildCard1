@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandlers : MonoBehaviour
 {
 	public GameObject PlayerObj;
 	public GameObject StoryObj;
 	public GameObject InventoryObj;
-	public GameObject EndObj;
+	//public GameObject EndObj;
+	public string SceneName = "GameOverScene";
 	
 	private List<string> HumansInParty;
 	
@@ -96,7 +98,8 @@ public class ButtonHandlers : MonoBehaviour
         PlayerObj.GetComponent<PlayerInteraction>().takeHuman = true;
         //---
 		
-		//InventoryObj.GetComponent<ChangeThisText>().ChangeText("Inventory: ");
+		string invS = "Inventory: " + PlayerObj.GetComponent<PlayerInteraction>().humanCount + " humans";
+		InventoryObj.GetComponent<ChangeThisText>().ChangeText(invS);
     }
 	
 	public void SacrificeHuman() {
@@ -115,6 +118,9 @@ public class ButtonHandlers : MonoBehaviour
         //Stuff Ryan Did:
         PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
         //---
+		
+		string invS = "Inventory: " + PlayerObj.GetComponent<PlayerInteraction>().humanCount + " humans";
+		InventoryObj.GetComponent<ChangeThisText>().ChangeText(invS);
     }
 	
 	public void FightAlien() {
@@ -123,7 +129,8 @@ public class ButtonHandlers : MonoBehaviour
 			//mimics a human being sacrificed so the enemy goes away
 			PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
 		} else {
-			EndObj.SetActive(true);
+			//EndObj.SetActive(true);
+			SceneManager.LoadScene(SceneName);
 		}
 	}
 	
