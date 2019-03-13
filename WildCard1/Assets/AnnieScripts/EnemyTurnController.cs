@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyTurnController : MonoBehaviour
 {
-	private GameObject StoryObj;
+	public GameObject StoryObj;
     // Start is called before the first frame update
     void Start()
     {
-		StoryObj = GameObject.FindWithTag("Story");
+		//StoryObj = GameObject.FindWithTag("Story");
 		StoryObj.GetComponent<ChangeThisText>().ChangeText("Aliens moved.");
     }
 

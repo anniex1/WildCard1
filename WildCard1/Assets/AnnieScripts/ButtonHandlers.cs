@@ -59,10 +59,10 @@ public class ButtonHandlers : MonoBehaviour
 		ByeHuman.Add("Jeremy", "Jeremy looks at you with betrayal in his eyes.");
 		ByeHuman.Add("Kristin", "Kristin tries hiding behind the curtains again. ...");
 		ByeHuman.Add("Hugh", "Hugh unsheathes hidden knives with a snick. Apparently aliens have big hand knives too. OwO");
-		ByeHuman.Add("Santino", "Satino. His name pretty much rhymes with sacrifice.");
+		ByeHuman.Add("Santino", "Santino. His name pretty much rhymes with sacrifice.");
 		
         PlayerObj = GameObject.FindWithTag("Player");
-		StoryObj = GameObject.FindWithTag("Story");
+		//StoryObj = GameObject.FindWithTag("Story");
 
 	}
 	
@@ -126,8 +126,10 @@ public class ButtonHandlers : MonoBehaviour
 	public void FightAlien() {
 		int winChance = Random.Range(0, 2);
 		if (winChance == 1) {
-			//mimics a human being sacrificed so the enemy goes away
-			PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
+            //mimics a human being sacrificed so the enemy goes away
+            StoryObj.GetComponent<ChangeThisText>().ChangeText("Your gamble paid off, and you flex your muscles in a victory pose" +
+                "as you stand over the dead alien's carcass");
+            PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
 		} else {
 			//EndObj.SetActive(true);
 			SceneManager.LoadScene(SceneName);
