@@ -2047,6 +2047,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d807a8c0d8ad1b24a825813e07edb925, type: 3}
+--- !u!114 &636312992 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2118667326900992210, guid: d807a8c0d8ad1b24a825813e07edb925,
+    type: 3}
+  m_PrefabInstance: {fileID: 636312991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224041187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea5c1c0382d70741b86930c47f9b55e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &702395178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6583,6 +6595,11 @@ PrefabInstance:
       propertyPath: twoSpaceEnemies.Array.data[9]
       value: 
       objectReference: {fileID: 1387326424}
+    - target: {fileID: 2689600374784130737, guid: d68f865c868d87f4183fa5385a1d069d,
+        type: 3}
+      propertyPath: storyControl
+      value: 
+      objectReference: {fileID: 636312992}
     m_RemovedComponents:
     - {fileID: 8122437918309207347, guid: d68f865c868d87f4183fa5385a1d069d, type: 3}
     - {fileID: 8122437918309207344, guid: d68f865c868d87f4183fa5385a1d069d, type: 3}
