@@ -1894,7 +1894,7 @@ PrefabInstance:
     - target: {fileID: 2118667325346841527, guid: d807a8c0d8ad1b24a825813e07edb925,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Story
       objectReference: {fileID: 0}
     - target: {fileID: 7035230796798570641, guid: d807a8c0d8ad1b24a825813e07edb925,
         type: 3}
@@ -1954,7 +1954,7 @@ PrefabInstance:
     - target: {fileID: 2118667326900992213, guid: d807a8c0d8ad1b24a825813e07edb925,
         type: 3}
       propertyPath: m_TagString
-      value: Story
+      value: StoryControl
       objectReference: {fileID: 0}
     - target: {fileID: 2118667326499435351, guid: d807a8c0d8ad1b24a825813e07edb925,
         type: 3}

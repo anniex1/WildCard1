@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		storyControl = GameObject.FindWithTag("Story").GetComponent<StoryController>(); //Annie
+		storyControl = GameObject.FindWithTag("StoryControl").GetComponent<StoryController>(); //Annie
         maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
         actionCount = maxActions;
     }

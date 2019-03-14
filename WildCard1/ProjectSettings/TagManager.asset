@@ -13,6 +13,7 @@ TagManager:
   - Story
   - Exit
   - GameOver
+  - StoryControl
   layers:
   - Default
   - TransparentFX
