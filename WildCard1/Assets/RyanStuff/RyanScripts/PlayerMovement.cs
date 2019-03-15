@@ -13,14 +13,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 		storyControl = GameObject.FindWithTag("StoryControl").GetComponent<StoryController>(); //Annie
-        maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
+        maxActions = 11 - GetComponent<PlayerInteraction>().humanCount;
         actionCount = maxActions;
     }
 
     // Update is called once per frame
     void Update()
     {
-        maxActions = 10 - GetComponent<PlayerInteraction>().humanCount;
+        maxActions = 11 - GetComponent<PlayerInteraction>().humanCount;
 
 
         if (actionCount > 0)

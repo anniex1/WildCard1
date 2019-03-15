@@ -6605,6 +6605,11 @@ PrefabInstance:
       propertyPath: storyControl
       value: 
       objectReference: {fileID: 636312992}
+    - target: {fileID: 2689600374784130737, guid: d68f865c868d87f4183fa5385a1d069d,
+        type: 3}
+      propertyPath: maxActions
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8122437918309207347, guid: d68f865c868d87f4183fa5385a1d069d, type: 3}
     - {fileID: 8122437918309207344, guid: d68f865c868d87f4183fa5385a1d069d, type: 3}

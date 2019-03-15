@@ -19,11 +19,15 @@ public class ButtonHandlers : MonoBehaviour
 	private Dictionary<string, string> HiHuman;
 	
 	private Dictionary<string, string> ByeHuman;
+
+	private System.Random rand;
 	
 	private string NewHumanConseq = "Your party moves slower and you have one less action per turn.";
     // Start is called before the first frame update
     void Start()
-    {	
+    {
+		rand = new System.Random();
+		
 		HumansInParty = new List<string>();
 		HumansOnShip = new List<string>();
 		HumansOnShip.Add("Amanda");
@@ -124,11 +128,12 @@ public class ButtonHandlers : MonoBehaviour
     }
 	
 	public void FightAlien() {
-		int winChance = Random.Range(0, 2);
-		if (winChance == 1) {
+		
+		int winChance = rand.Next(0, 100);
+		if (winChance >= 50) {
             //mimics a human being sacrificed so the enemy goes away
             StoryObj.GetComponent<ChangeThisText>().ChangeText("Your gamble paid off, and you flex your muscles in a victory pose" +
-                "as you stand over the dead alien's carcass");
+                "as you stand over the dead alien's carcass.");
             PlayerObj.GetComponent<PlayerInteraction>().sacrificedHuman = true;
 		} else {
 			//EndObj.SetActive(true);
